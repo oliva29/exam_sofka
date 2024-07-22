@@ -1,6 +1,5 @@
 import { View, DimensionValue, StyleProp, ViewStyle, TextStyle, ImageStyle } from "react-native";
 
-
 export interface SpacingPropsType {
     m?:  DimensionValue | undefined;
     mt?: DimensionValue | undefined;
@@ -30,14 +29,14 @@ interface PropsDiv extends SpacingPropsType {
 export default function Div(props: PropsDiv){
     const { mb, ml, mr, mt, mx, my, m } = props;
     const { pb, pl, pr, pt, px, py, p } = props;
-    const { children, bg , flex, styles } = props;
+    const { children, bg , flex, style } = props;
     const stylesView = {
         marginBottom: mb,
         marginLeft: ml,
         marginRight: mr,
         marginTop: mt,
-        marginHorizontal: my,
-        marginVertical: mx,
+        marginHorizontal: mx,
+        marginVertical: my,
         margin: m,
         paddingBottom: pb,
         paddingLeft: pl,
@@ -47,13 +46,13 @@ export default function Div(props: PropsDiv){
         paddingVertical: py,
         padding: p, 
         backgroundColor: bg,
-        ...styles
     }
+        
 
     const stylesWithFlex = flex ? {...stylesView, flex} : stylesView;
     
     return (
-        <View style={stylesWithFlex}>
+        <View style={[stylesWithFlex, style]}>
             {children}
         </View>
     )
